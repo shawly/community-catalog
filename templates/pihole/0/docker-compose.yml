@@ -10,7 +10,7 @@ services:
     cap_add:
     - NET_ADMIN
     hostname: ${pihole_hostname}
-    image: diginc/pi-hole:latest
+    image: diginc/pi-hole
     environment:
       ServerIP: ${pihole_server_ip}
       TZ: ${pihole_timezone}
