@@ -1,6 +1,6 @@
-# Rancher Community Catalog 
+# Rancher Personal Catalog 
 
-This catalog provides templates created by the community, and they are not maintained or supported by Rancher Labs.
+This catalog provides custom templates, and they are not maintained or supported by Rancher Labs.
 
 # License
 Copyright (c) 2014-2017 [Rancher Labs, Inc.](http://rancher.com)

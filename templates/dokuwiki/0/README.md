@@ -5,7 +5,7 @@ DokuWiki is a simple to use and highly versatile Open Source wiki software that 
 ## Version
 The Stack is based on DokuWiki Version 2016-06-26a "Elenor of Tsort"
 
-Check out the underlying dockerfile here: https://hub.docker.com/r/ununseptium/dokuwiki-docker
+Check out the underlying dockerfile here: https://hub.docker.com/r/bitnami/dokuwiki
 
 ## Setup
 To initialize the dokuwiki you have to run the install.php script. The url scheme to get to the install script would be:

@@ -1,20 +1,20 @@
-dokuwiki-server:
+dokuwiki:
   ports:
   - ${http_port}:80/tcp
+  - ${https_port}:443/tcp
   labels:
-    io.rancher.sidekicks: dokuwiki-data
+    io.rancher.container.requested_ip: ${requested_ip}
   hostname: ${dokuwiki_hostname}
-  image: ununseptium/dokuwiki-docker
-  volumes_from:
-  - dokuwiki-data
-  
-dokuwiki-data:
-  labels:
-    io.rancher.container.start_once: 'true'
-  entrypoint:
-  - /bin/true
-  hostname: dokuwikidata
-  image: ununseptium/dokuwiki-docker
+  image: bitnami/dokuwiki
   volumes:
-  - /var/www/html/data
-  - /var/www/html/lib/plugins
+  - dokuwiki_data:/bitnami
+  environment:
+    DOKUWIKI_FULL_NAME: ${dokuwiki_full_name}
+    DOKUWIKI_USERNAME: ${dokuwiki_username}
+    DOKUWIKI_PASSWORD: ${dokuwiki_password}
+    DOKUWIKI_EMAIL: ${dokuwiki_email}
+    DOKUWIKI_WIKI_NAME: ${dokuwiki_wiki_name}
+
+volumes:
+    dokuwiki_data:
+        driver: ${volume_driver}

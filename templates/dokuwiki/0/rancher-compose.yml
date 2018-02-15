@@ -4,14 +4,14 @@
   description: |
     DokuWiki is a simple to use and highly versatile Open Source wiki software that doesn't require a database.
   minimum_rancher_version: v0.56.0
-  maintainer: "Tim Kopplow <tim@arctium.io>"
+  maintainer: "shawly <shawlyde@gmail.com>"
   uuid: dokuwiki-0
   questions:
     - variable: "dokuwiki_hostname"
       description: "Dokuwiki hostname"
       label: "Hostname:"
       required: true
-      default: "dw.example.com"
+      default: "dokuwiki.example.com"
       type: "string"
     - variable: "http_port"
       description: "HTTP port to expose on host. Will be used to bind TCP"
@@ -19,8 +19,51 @@
       required: true
       default: 80
       type: "string"
+    - variable: "https_port"
+      description: "HTTPS port to expose on host. Will be used to bind TCP"
+      label: "HTTPS port:"
+      required: true
+      default: 80
+      type: "string"
+    - variable: "requested_ip"
+      description: "Static IP for the container"
+      label: "Static IP:"
+      required: false
+      default: "10.10.0.10"
+      type: "string"
+    - variable: "dokuwiki_full_name"
+      description: "The full name of the DokuWiki admin account."
+      label: "Full Name:"
+      required: false
+      default: "Full Name"
+      type: "string"
+    - variable: "dokuwiki_username"
+      description: "The username of the DokuWiki admin account."
+      label: "Username:"
+      required: false
+      default: "superuser"
+      type: "string"
+    - variable: "dokuwiki_password"
+      description: "The password of the DokuWiki admin account."
+      label: "Password:"
+      required: false
+      default: "bitnami1"
+      type: "string"
+    - variable: "dokuwiki_email"
+      description: "The email of the DokuWiki admin account."
+      label: "Email:"
+      required: false
+      default: "user@example.com"
+      type: "string"
+    - variable: "dokuwiki_wiki_name"
+      description: "The site name of the DokuWiki."
+      label: "Wiki Name:"
+      required: false
+      default: "Bitnami DokuWiki"
+      type: "string"
 
-dokuwiki-server:
+
+dokuwiki:
   scale: 1
   retain_ip: true
   health_check:
@@ -30,7 +73,3 @@ dokuwiki-server:
     strategy: recreate
     response_timeout: 2000
     healthy_threshold: 2
-
-dokuwiki-data:
-  scale: 1
-  retain_ip: true
