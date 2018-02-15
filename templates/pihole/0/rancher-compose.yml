@@ -47,8 +47,8 @@
       description: "For unraid compatibility, strips out all the IPv6 configuration from DNS/Web services when false."
       label: "IPv6 Enabled:"
       required: false
-      default: "True"
-      type: "string"
+      default: true
+      type: "boolean"
     - variable: "pihole_interface"
       description: "The default works fine with our basic example docker run commands. If you're trying to use DHCP with --net host mode then you may have to customize this or DNSMASQ_LISTENING."
       label: "Interface:"
@@ -56,11 +56,11 @@
       default: "eth0"
       type: "string"
     - variable: "pihole_password"
-      description: "The password of the webinterface."
+      description: "The password of the webinterface. Default is pihole1."
       label: "Password:"
       required: false
       default: "pihole1"
-      type: "string"
+      type: "password"
     - variable: "pihole_dns1"
       description: "Primary upstream DNS provider."
       label: "DNS1:"
@@ -84,7 +84,10 @@
       label: "Listening:"
       required: false
       default: "all"
-      type: "string"
+      type: enum   
+      options:
+        - all
+        - local
     - variable: "volume_driver"
       description: "Volume driver for Pi-Hole data."
       label: "Volume Driver:"

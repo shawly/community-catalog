@@ -44,11 +44,11 @@
       default: "superuser"
       type: "string"
     - variable: "dokuwiki_password"
-      description: "The password of the DokuWiki admin account."
+      description: "The password of the DokuWiki admin account. Default is bitnami1."
       label: "Password:"
       required: false
       default: "bitnami1"
-      type: "string"
+      type: "password"
     - variable: "dokuwiki_email"
       description: "The email of the DokuWiki admin account."
       label: "Email:"
