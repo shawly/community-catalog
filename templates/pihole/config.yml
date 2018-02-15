@@ -1,5 +1,5 @@
 name: Pi-Hole
 description: |
-  Pi-Hole adblock DNS server.
+  The Pi-hole is a DNS sinkhole that protects your devices from unwanted content, without installing any client-side software.
 version: 3.2.1
 category: DNS
