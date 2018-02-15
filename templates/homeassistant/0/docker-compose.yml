@@ -9,6 +9,7 @@ services:
     image: homeassistant/home-assistant
     environment:
       TZ: ${hass_timezone}
+    privileged: true
     volumes:
     - home-assistant_data:/config
 volumes:

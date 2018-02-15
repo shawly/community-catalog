@@ -1,0 +1,51 @@
+.catalog:
+  name: Organizr
+  version: 1.7
+  description: |
+    HTPC/Homelab Services Organizer
+  minimum_rancher_version: v0.56.0
+  maintainer: "shawly <shawlyde@gmail.com>"
+  uuid: organizr-0
+  questions:
+    - variable: "organizr_hostname"
+      description: "Organizr hostname"
+      label: "Hostname:"
+      required: true
+      default: "organizr.example.com"
+      type: "string"
+    - variable: "http_port"
+      description: "HTTP port to expose on host. Will be used to bind TCP"
+      label: "HTTP port:"
+      required: true
+      default: 80
+      type: "string"
+    - variable: "requested_ip"
+      description: "Static IP for the container"
+      label: "Static IP:"
+      required: false
+      default: "10.10.0.10"
+      type: "string"
+    - variable: "organizr_timezone"
+      description: "Timezone for Organizr."
+      label: "Timezone:"
+      required: false
+      default: "Europe/Berlin"
+      type: "string"
+    - variable: "volume_driver"
+      description: "Volume driver for Organizr data."
+      label: "Volume Driver:"
+      required: true
+      default: "local"
+      type: "string"
+
+
+Organizr:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 80
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2

@@ -1,0 +1,16 @@
+version: '2'
+services:
+  organizr:
+    ports:
+    - ${http_port}:80/tcp
+    labels:
+      io.rancher.container.requested_ip: ${requested_ip}
+    hostname: ${organizr_hostname}
+    image: lsiocommunity/organizr
+    environment:
+      TZ: ${organizr_timezone}
+    volumes:
+    - organizr_data:/config
+volumes:
+    organizr_data:
+        driver: ${volume_driver}

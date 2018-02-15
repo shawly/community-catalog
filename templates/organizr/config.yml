@@ -1,0 +1,5 @@
+name: Organizr
+description: |
+  HTPC/Homelab Services Organizer - Written in PHP
+version: 1.7
+category: Applications
