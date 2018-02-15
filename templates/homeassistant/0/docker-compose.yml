@@ -1,0 +1,18 @@
+version: '2'
+services:
+  home-assistant:
+    ports:
+    - ${http_port}:8123/tcp
+    labels:
+      io.rancher.container.requested_ip: ${requested_ip}
+    hostname: ${hass_hostname}
+    image: homeassistant/home-assistant
+    environment:
+      TZ: ${hass_timezone}
+    volumes:
+    - home-assistant_data:/config
+    devices:
+      ${devices}
+volumes:
+    home-assistant_data:
+        driver: ${volume_driver}

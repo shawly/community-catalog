@@ -1,0 +1,51 @@
+.catalog:
+  name: Home Assistant
+  version: 0.63.2
+  description: |
+    Home Assistant automation software
+  minimum_rancher_version: v0.56.0
+  maintainer: "shawly <shawlyde@gmail.com>"
+  uuid: home-assistant-0
+  questions:
+    - variable: "hass_hostname"
+      description: "Home Assistant hostname"
+      label: "Hostname:"
+      required: true
+      default: "hass.example.com"
+      type: "string"
+    - variable: "http_port"
+      description: "HTTP port to expose on host. Will be used to bind TCP"
+      label: "HTTP port:"
+      required: true
+      default: 8123
+      type: "string"
+    - variable: "requested_ip"
+      description: "Static IP for the container"
+      label: "Static IP:"
+      required: false
+      default: "10.10.0.10"
+      type: "string"
+    - variable: "hass_timezone"
+      description: "Timezone for Home Assistant."
+      label: "Timezone:"
+      required: false
+      default: "Europe/Berlin"
+      type: "string"
+    - variable: "volume_driver"
+      description: "Volume driver for Home Assistant data."
+      label: "Volume Driver:"
+      required: true
+      default: "local"
+      type: "string"
+
+
+home-assistant:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 8123
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
