@@ -11,8 +11,7 @@ services:
       TZ: ${hass_timezone}
     volumes:
     - home-assistant_data:/config
-    devices:
-      ${devices}
+    devices: ${devices}
 volumes:
     home-assistant_data:
         driver: ${volume_driver}
