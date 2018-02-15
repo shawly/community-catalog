@@ -31,16 +31,6 @@
       required: false
       default: "Europe/Berlin"
       type: "string"
-    - variable: "devices"
-      description: "Devices you want to use with Home Assistant."
-      label: "Devices:"
-      required: false
-      default: ""
-      type: multiline
-      default: |
-        - /dev/ttyUSB0:/dev/ttyUSB0
-        - /dev/ttyUSB1:/dev/ttyUSB1
-        - /dev/ttyACM0:/dev/ttyACM0
     - variable: "volume_driver"
       description: "Volume driver for Home Assistant data."
       label: "Volume Driver:"
