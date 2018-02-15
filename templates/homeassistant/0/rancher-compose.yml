@@ -43,7 +43,7 @@ home-assistant:
   scale: 1
   retain_ip: true
   health_check:
-    port: 8
+    port: 8123
     interval: 30000
     unhealthy_threshold: 3
     strategy: recreate
