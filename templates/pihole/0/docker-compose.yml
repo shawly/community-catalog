@@ -1,0 +1,35 @@
+version: '2'
+services:
+  pi-hole:
+    ports:
+    - ${dns_port}:53/tcp
+    - ${dns_port}:53/udp
+    - ${http_port}:80/tcp
+    labels:
+      io.rancher.container.requested_ip: ${requested_ip}
+    cap_add:
+    - NET_ADMIN
+    hostname: ${pihole_hostname}
+    image: diginc/pi-hole:latest
+    environment:
+      ServerIP: ${pihole_server_ip}
+      TZ: ${pihole_timezone}
+      WEBPASSWORD: ${pihole_password}
+      DNS1: ${pihole_dns1}
+      DNS2: ${pihole_dns2}
+      VIRTUAL_HOST: ${pihole_virtual_host}
+      IPv6: ${pihole_ipv6}
+      INTERFACE: ${pihole_interface}
+      DNSMASQ_LISTENING: ${pihole_dnsmasqlistening}
+      WEB_PORT: ${http_port}
+    volumes:
+    - /var/log
+    - pi-hole_data:/etc/pihole
+    - pi-hole_dnsmasq_data:/etc/dnsmasq.d
+    extra_hosts:
+    - ${pihole_hostname}:${pihole_server_ip}
+volumes:
+    pi-hole_data:
+        driver: ${volume_driver}
+    pi-hole_dnsmasq_data:
+        driver: ${volume_driver}

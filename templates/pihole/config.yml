@@ -1,0 +1,5 @@
+name: Pi-Hole
+description: |
+  Pi-Hole adblock DNS server.
+version: 3.2.1
+category: DNS

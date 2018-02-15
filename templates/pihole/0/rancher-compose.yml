@@ -1,0 +1,105 @@
+.catalog:
+  name: Pi-Hole
+  version: 3.2.1
+  description: |
+    Pi-Hole adblock DNS server.
+  minimum_rancher_version: v0.56.0
+  maintainer: "shawly <shawlyde@gmail.com>"
+  uuid: pi-hole-0
+  questions:
+    - variable: "pihole_hostname"
+      description: "Pi-Hole hostname"
+      label: "Hostname:"
+      required: true
+      default: "pihole.example.com"
+      type: "string"
+    - variable: "http_port"
+      description: "HTTP port to expose on host. Will be used to bind TCP"
+      label: "HTTP port:"
+      required: true
+      default: 80
+      type: "string"
+    - variable: "dns_port"
+      description: "DNS port to expose on host. Will be used to bind TCP and UDP"
+      label: "DNS port:"
+      required: true
+      default: 53
+      type: "string"
+    - variable: "requested_ip"
+      description: "Static IP for the container"
+      label: "Static IP:"
+      required: false
+      default: "10.10.0.10"
+      type: "string"
+    - variable: "pihole_server_ip"
+      description: "External IP for Pi-Hole."
+      label: "Server IP:"
+      required: true
+      default: "10.10.0.10"
+      type: "string"
+    - variable: "pihole_virtual_host"
+      description: "What your web server 'virtual host' is, accessing admin through this Hostname/IP allows you to make changes to the whitelist / blacklists in addition to the default 'http://pi.hole/admin/' address."
+      label: "Virtual Host:"
+      required: false
+      default: "10.10.0.10"
+      type: "string"
+    - variable: "pihole_ipv6"
+      description: "For unraid compatibility, strips out all the IPv6 configuration from DNS/Web services when false."
+      label: "IPv6 Enabled:"
+      required: false
+      default: "True"
+      type: "string"
+    - variable: "pihole_interface"
+      description: "The default works fine with our basic example docker run commands. If you're trying to use DHCP with --net host mode then you may have to customize this or DNSMASQ_LISTENING."
+      label: "Interface:"
+      required: false
+      default: "eth0"
+      type: "string"
+    - variable: "pihole_password"
+      description: "The password of the webinterface."
+      label: "Password:"
+      required: false
+      default: "pihole1"
+      type: "string"
+    - variable: "pihole_dns1"
+      description: "Primary upstream DNS provider."
+      label: "DNS1:"
+      required: false
+      default: "8.8.8.8"
+      type: "string"
+    - variable: "pihole_dns2"
+      description: "Secondary upstream DNS provider."
+      label: "DNS2:"
+      required: false
+      default: "8.8.4.4"
+      type: "string"
+    - variable: "pihole_timezone"
+      description: "Timezone for Pi-Hole."
+      label: "Timezone:"
+      required: false
+      default: "Europe/Berlin"
+      type: "string"
+    - variable: "pihole_dnsmasqlistening"
+      description: "local listens on all local subnets, all permits listening on internet origin subnets in addition to local."
+      label: "Listening:"
+      required: false
+      default: "all"
+      type: "string"
+    - variable: "volume_driver"
+      description: "Volume driver for Pi-Hole data."
+      label: "Volume Driver:"
+      required: true
+      default: "local"
+      type: "string"
+
+
+pi-hole:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 80
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
