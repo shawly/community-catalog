@@ -1,19 +1,21 @@
-dokuwiki:
-  ports:
-  - ${http_port}:80/tcp
-  - ${https_port}:443/tcp
-  labels:
-    io.rancher.container.requested_ip: ${requested_ip}
-  hostname: ${dokuwiki_hostname}
-  image: bitnami/dokuwiki
-  volumes:
-  - dokuwiki_data:/bitnami
-  environment:
-    DOKUWIKI_FULL_NAME: ${dokuwiki_full_name}
-    DOKUWIKI_USERNAME: ${dokuwiki_username}
-    DOKUWIKI_PASSWORD: ${dokuwiki_password}
-    DOKUWIKI_EMAIL: ${dokuwiki_email}
-    DOKUWIKI_WIKI_NAME: ${dokuwiki_wiki_name}
+version: '2'
+services:
+  dokuwiki:
+    ports:
+    - ${http_port}:80/tcp
+    - ${https_port}:443/tcp
+    labels:
+      io.rancher.container.requested_ip: ${requested_ip}
+    hostname: ${dokuwiki_hostname}
+    image: bitnami/dokuwiki
+    volumes:
+    - dokuwiki_data:/bitnami
+    environment:
+      DOKUWIKI_FULL_NAME: ${dokuwiki_full_name}
+      DOKUWIKI_USERNAME: ${dokuwiki_username}
+      DOKUWIKI_PASSWORD: ${dokuwiki_password}
+      DOKUWIKI_EMAIL: ${dokuwiki_email}
+      DOKUWIKI_WIKI_NAME: ${dokuwiki_wiki_name}
 
 volumes:
     dokuwiki_data:
