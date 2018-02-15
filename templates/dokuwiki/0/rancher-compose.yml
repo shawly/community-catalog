@@ -23,7 +23,7 @@
       description: "HTTPS port to expose on host. Will be used to bind TCP"
       label: "HTTPS port:"
       required: true
-      default: 80
+      default: 443
       type: "string"
     - variable: "requested_ip"
       description: "Static IP for the container"
