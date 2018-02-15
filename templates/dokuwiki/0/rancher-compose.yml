@@ -61,6 +61,12 @@
       required: false
       default: "Bitnami DokuWiki"
       type: "string"
+    - variable: "volume_driver"
+      description: "Volume driver for dokuwiki data."
+      label: "Volume Driver:"
+      required: true
+      default: "local"
+      type: "string"
 
 
 dokuwiki:
