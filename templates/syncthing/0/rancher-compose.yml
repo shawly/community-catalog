@@ -37,6 +37,24 @@
       required: false
       default: "10.10.0.10"
       type: "string"
+    - variable: "syncthing_gid"
+      description: "GID for Syncthing."
+      label: "GID:"
+      required: false
+      default: "1000"
+      type: "string"
+    - variable: "syncthing_uid"
+      description: "UID for Syncthing."
+      label: "UID:"
+      required: false
+      default: "1000"
+      type: "string"
+    - variable: "syncthing_umask"
+      description: "Umask for Syncthing."
+      label: "Umask:"
+      required: false
+      default: "022"
+      type: "string"
     - variable: "syncthing_timezone"
       description: "Timezone for Syncthing."
       label: "Timezone:"
