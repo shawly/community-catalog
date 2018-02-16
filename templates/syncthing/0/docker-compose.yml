@@ -19,7 +19,7 @@ volumes:
         driver: ${volume_driver}
         driver_opts:
             host: ${nfs_server}
-            exportBase: ${nfs_export}
+            export: ${nfs_export}
             onRemove: retain
     syncthing_config_data:
         driver: ${volume_driver}
