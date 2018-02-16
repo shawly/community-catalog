@@ -12,8 +12,8 @@ services:
     environment:
       TZ: ${syncthing_timezone}
     volumes:
-    - syncthing_data:/sync
-    - syncthing_config_data:/config
+    - syncthing_data:/var/syncthing
+    - syncthing_config_data:/var/syncthing/config
 volumes:
     syncthing_data:
         driver: ${volume_driver}
