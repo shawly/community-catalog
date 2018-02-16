@@ -8,21 +8,14 @@ services:
     labels:
       io.rancher.container.requested_ip: ${requested_ip}
     hostname: ${syncthing_hostname}
-    image: linuxserver/syncthing
+    image: syncthing/syncthing
     environment:
       TZ: ${syncthing_timezone}
-      PGID: ${syncthing_gid}
-      PUID: ${syncthing_uid}
-      UMASK_SET: ${syncthing_umask}
     volumes:
     - syncthing_data:/sync
     - syncthing_config_data:/config
 volumes:
     syncthing_data:
         driver: ${volume_driver}
-        driver_opts:
-            host: ${nfs_server}
-            export: ${nfs_export}
-            onRemove: retain
     syncthing_config_data:
         driver: ${volume_driver}

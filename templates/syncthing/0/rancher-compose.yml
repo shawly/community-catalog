@@ -37,24 +37,6 @@
       required: false
       default: "10.10.0.10"
       type: "string"
-    - variable: "syncthing_gid"
-      description: "GID for Syncthing."
-      label: "GID:"
-      required: false
-      default: "1000"
-      type: "string"
-    - variable: "syncthing_uid"
-      description: "UID for Syncthing."
-      label: "UID:"
-      required: false
-      default: "1000"
-      type: "string"
-    - variable: "syncthing_umask"
-      description: "Umask for Syncthing."
-      label: "Umask:"
-      required: false
-      default: "022"
-      type: "string"
     - variable: "syncthing_timezone"
       description: "Timezone for Syncthing."
       label: "Timezone:"
@@ -66,18 +48,6 @@
       label: "Volume Driver:"
       required: true
       default: "local"
-      type: "string"
-    - variable: "nfs_server"
-      description: "NFS server for syncthing_data volume."
-      label: "NFS server:"
-      required: true
-      default: "192.168.0.10"
-      type: "string"
-    - variable: "nfs_export"
-      description: "NFS export to use for syncthing_data volume."
-      label: "NFS export:"
-      required: true
-      default: "/export/share"
       type: "string"
 
 
