@@ -39,7 +39,7 @@
       type: "string"
 
 
-Organizr:
+organizr:
   scale: 1
   retain_ip: true
   health_check:
