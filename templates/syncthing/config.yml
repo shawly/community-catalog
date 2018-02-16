@@ -1,0 +1,5 @@
+name: Syncthing
+description: |
+  Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers.
+version: 0.14.45-rc.3
+category: Synchronization

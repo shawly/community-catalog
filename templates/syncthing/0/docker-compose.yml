@@ -1,0 +1,25 @@
+version: '2'
+services:
+  syncthing:
+    ports:
+    - ${http_port}:8384/tcp
+    - ${syncthing_port}:22000/tcp
+    - ${syncthing_discovery_port}:21027/udp
+    labels:
+      io.rancher.container.requested_ip: ${requested_ip}
+    hostname: ${syncthing_hostname}
+    image: syncthing/syncthing
+    environment:
+      TZ: ${syncthing_timezone}
+    volumes:
+    - syncthing_data:/var/syncthing
+    - syncthing_config_data:/var/syncthing/config
+volumes:
+    syncthing_data:
+        driver: ${volume_driver}
+        driver_opts:
+            host: ${nfs_server}
+            exportBase: ${nfs_export}
+            onRemove: retain
+    syncthing_config_data:
+        driver: ${volume_driver}

@@ -1,0 +1,75 @@
+.catalog:
+  name: Syncthing
+  version: 0.14.45-rc.3
+  description: |
+    Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers.
+  minimum_rancher_version: v0.56.0
+  maintainer: "shawly <shawlyde@gmail.com>"
+  uuid: syncthing-0
+  questions:
+    - variable: "syncthing_hostname"
+      description: "Syncthing hostname"
+      label: "Hostname:"
+      required: true
+      default: "syncthing.example.com"
+      type: "string"
+    - variable: "http_port"
+      description: "HTTP port to expose on host. Will be used to bind TCP"
+      label: "HTTP port:"
+      required: true
+      default: 8384
+      type: "string"
+    - variable: "syncthing_port"
+      description: "Syncthing port to expose on host. Will be used to bind TCP"
+      label: "Syncthing port:"
+      required: true
+      default: 22000
+      type: "string"
+    - variable: "syncthing_discovery_port"
+      description: "Syncthing Discovery port to expose on host. Will be used to bind UDP"
+      label: "Syncthing discovery port:"
+      required: true
+      default: 21027
+      type: "string"
+    - variable: "requested_ip"
+      description: "Static IP for the container"
+      label: "Static IP:"
+      required: false
+      default: "10.10.0.10"
+      type: "string"
+    - variable: "syncthing_timezone"
+      description: "Timezone for Syncthing."
+      label: "Timezone:"
+      required: false
+      default: "Europe/Berlin"
+      type: "string"
+    - variable: "volume_driver"
+      description: "Volume driver for Syncthing data."
+      label: "Volume Driver:"
+      required: true
+      default: "local"
+      type: "string"
+    - variable: "nfs_server"
+      description: "NFS server for syncthing_data volume."
+      label: "NFS server:"
+      required: true
+      default: "192.168.0.10"
+      type: "string"
+    - variable: "nfs_export"
+      description: "NFS export to use for syncthing_data volume."
+      label: "NFS export:"
+      required: true
+      default: "/export/share"
+      type: "string"
+
+
+syncthing:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 8384
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
