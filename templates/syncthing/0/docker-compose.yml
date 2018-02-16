@@ -12,7 +12,7 @@ services:
     environment:
       TZ: ${syncthing_timezone}
     volumes:
-    - syncthing_data:/var/syncthing
+    - syncthing_data:/var/syncthing/sync
     - syncthing_config_data:/var/syncthing/config
 volumes:
     syncthing_data:
