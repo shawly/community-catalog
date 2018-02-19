@@ -16,6 +16,6 @@ services:
     - syncthing_config_data:/var/syncthing/config
 volumes:
     syncthing_data:
-        driver: ${volume_driver}
+        external: true
     syncthing_config_data:
         driver: ${volume_driver}
