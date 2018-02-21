@@ -22,8 +22,7 @@ services:
       io.rancher.container.start_once: 'true'
     entrypoint:
     - /bin/true
-    hostname: dokuwikidata
-    image: bitnami/dokuwiki
+    image: busybox
     volume_driver: ${volume_driver}
     volumes:
     - /bitnami
