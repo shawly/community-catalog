@@ -6,17 +6,24 @@ services:
     - ${https_port}:443/tcp
     labels:
       io.rancher.container.requested_ip: ${requested_ip}
+      io.rancher.sidekicks: dokuwiki-data
     hostname: ${dokuwiki_hostname}
     image: bitnami/dokuwiki
-    volumes:
-    - dokuwiki_data:/bitnami
+    volumes_from:
+    - dokuwiki-data
     environment:
       DOKUWIKI_FULL_NAME: ${dokuwiki_full_name}
       DOKUWIKI_USERNAME: ${dokuwiki_username}
       DOKUWIKI_PASSWORD: ${dokuwiki_password}
       DOKUWIKI_EMAIL: ${dokuwiki_email}
       DOKUWIKI_WIKI_NAME: ${dokuwiki_wiki_name}
-
-volumes:
-    dokuwiki_data:
-        driver: ${volume_driver}
+  dokuwiki-data:
+    labels:
+      io.rancher.container.start_once: 'true'
+    entrypoint:
+    - /bin/true
+    hostname: dokuwikidata
+    image: bitnami/dokuwiki
+    volume_driver: ${volume_driver}
+    volumes:
+    - /bitnami
