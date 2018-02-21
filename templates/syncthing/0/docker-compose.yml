@@ -30,6 +30,6 @@ volumes:
   ${volume_name}:
     {{- if eq .Values.volume_custom_export "true"}}
     driver_opts:
-      host: ${volume_host}
-      ${volume_export_type}: ${volume_export}
+      host: ${volume_export_host}
+      ${volume_export_type}: ${volume_export_path}
     {{- end}}
