@@ -19,6 +19,7 @@ services:
     labels:
       io.rancher.container.start_once: 'true'
     image: busybox
+    network_mode: none
     entrypoint:
     - /bin/true
     volume_driver: ${volume_driver}
