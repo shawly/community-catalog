@@ -4,14 +4,21 @@ services:
     ports:
     - ${http_port}:8123/tcp
     labels:
+      io.rancher.sidekicks: home-assistant-data
+      {{- if ne .Values.requested_ip ""}}
       io.rancher.container.requested_ip: ${requested_ip}
+      {{- end}}
     hostname: ${hass_hostname}
     image: homeassistant/home-assistant
     environment:
       TZ: ${hass_timezone}
     privileged: true
+    volumes_from:
+    - home-assistant-data
+  home-assistant-data:
+    image: busybox
+    entrypoint:
+    - /bin/true
+    volume_driver: ${volume_driver}
     volumes:
-    - home-assistant_data:/config
-volumes:
-    home-assistant_data:
-        driver: ${volume_driver}
+    - /config
