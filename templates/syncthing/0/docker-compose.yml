@@ -25,9 +25,9 @@ services:
     volume_driver: ${volume_driver}
     volumes:
     - /var/syncthing/config
-    - ${syncvolume_name}:/var/syncthing/sync
+    - ${volume_name}:/var/syncthing/sync
 volumes:
-  ${syncvolume_name}:
+  ${volume_name}:
     {{- if eq .Values.volume_custom_export "true"}}
     driver_opts:
       host: ${volume_host}
