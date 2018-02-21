@@ -6,16 +6,30 @@ services:
     - ${syncthing_port}:22000/tcp
     - ${syncthing_discovery_port}:21027/udp
     labels:
+      io.rancher.sidekicks: syncthing-data
+      {{- if ne .Values.requested_ip ""}}
       io.rancher.container.requested_ip: ${requested_ip}
+      {{- end}}
     hostname: ${syncthing_hostname}
     image: syncthing/syncthing
     environment:
       TZ: ${syncthing_timezone}
+    volumes_from:
+    - syncthing-data
+  syncthing-data:
+    labels:
+      io.rancher.container.start_once: 'true'
+    image: busybox
+    entrypoint:
+    - /bin/true
+    volume_driver: ${volume_driver}
     volumes:
-    - syncthing_data:/var/syncthing/sync
-    - syncthing_config_data:/var/syncthing/config
+    - /var/syncthing/config
+    - ${syncvolume_name}:/var/syncthing/sync
 volumes:
-    syncthing_data:
-        external: true
-    syncthing_config_data:
-        driver: ${volume_driver}
+  ${syncvolume_name}:
+    {{- if eq .Values.volume_custom_export "true"}}
+    driver_opts:
+      host: ${volume_host}
+      ${volume_export_type}: ${volume_export}
+    {{- end}}
