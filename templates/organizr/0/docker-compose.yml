@@ -15,6 +15,7 @@ services:
     - organizr-data
   organizr-data:
     image: busybox
+    network_mode: none
     entrypoint:
     - /bin/true
     volume_driver: ${volume_driver}
