@@ -1,0 +1,64 @@
+.catalog:
+  name: Plex Media Server
+  version: 1.11.3
+  description: |
+    Plex allows you to aggregate all your personal media and access it anywhere you go. Enjoy your own media on all your devices with the Plex Media Server.
+  minimum_rancher_version: v0.56.0
+  maintainer: "shawly <shawlyde@gmail.com>"
+  uuid: plex-0
+  questions:
+    - variable: "plex_hostname"
+      description: "plex hostname"
+      label: "Hostname:"
+      required: true
+      default: "plex.example.com"
+      type: "string"
+    - variable: "plex_port"
+      description: "plex port to expose on host. Will be used to bind TCP"
+      label: "plex port:"
+      required: true
+      default: 32400
+      type: "string"
+    - variable: "requested_ip"
+      description: "Static IP for the container"
+      label: "Static IP:"
+      required: false
+      default: ""
+      type: "string"
+    - variable: "plex_timezone"
+      description: "Timezone for plex."
+      label: "Timezone:"
+      required: true
+      default: "Europe/Berlin"
+      type: "string"
+    - variable: "volume_driver"
+      description: "Volume driver for plex data."
+      label: "Volume Driver:"
+      required: true
+      default: "local"
+      type: "string"
+    - variable: "plex_claimtoken"
+      description: "Plex Claim Token from https://www.plex.tv/claim/."
+      label: "Plex Claimtoken:"
+      required: false
+      default: false
+      type: "boolean"
+    - variable: "advertise_ip"
+      description: "This variable defines the IP on which the server may be be found."
+      label: "Advertise IP:"
+      required: false
+      default: "192.168.0.100"
+      type: "string"
+
+plex:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 32400
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
+plex-data:
+  scale: 1
