@@ -23,12 +23,12 @@
       description: "Static IP for the container"
       label: "Static IP:"
       required: false
-      default: "10.10.0.10"
+      default: ""
       type: "string"
     - variable: "hass_timezone"
       description: "Timezone for Home Assistant."
       label: "Timezone:"
-      required: false
+      required: true
       default: "Europe/Berlin"
       type: "string"
     - variable: "volume_driver"
@@ -49,3 +49,5 @@ home-assistant:
     strategy: recreate
     response_timeout: 2000
     healthy_threshold: 2
+home-assistant-data:
+  scale: 1
