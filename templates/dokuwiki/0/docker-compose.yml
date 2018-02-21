@@ -25,6 +25,7 @@ services:
     entrypoint:
     - /bin/true
     image: busybox
+    network_mode: none
     volume_driver: ${volume_driver}
     volumes:
     - /bitnami
