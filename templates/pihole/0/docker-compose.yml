@@ -27,6 +27,8 @@ services:
       WEB_PORT: ${http_port}
     extra_hosts:
     - ${pihole_hostname}:${pihole_server_ip}
+    volumes_from:
+    - pi-hole-data
   pi-hole-data:
     labels:
       io.rancher.container.start_once: 'true'
