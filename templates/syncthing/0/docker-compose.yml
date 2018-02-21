@@ -31,5 +31,9 @@ volumes:
     {{- if eq .Values.volume_custom_export "true"}}
     driver_opts:
       host: ${volume_export_host}
-      ${volume_export_type}: ${volume_export_path}
+      {{- if eq .Values.volume_export_type "export"}}
+      export: ${volume_export_path}
+      {{- else }}
+      exportBase: ${volume_export_path}
+      {{- end}}
     {{- end}}
