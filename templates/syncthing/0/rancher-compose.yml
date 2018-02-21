@@ -35,12 +35,12 @@
       description: "Static IP for the container"
       label: "Static IP:"
       required: false
-      default: "10.10.0.10"
+      default: ""
       type: "string"
     - variable: "syncthing_timezone"
       description: "Timezone for Syncthing."
       label: "Timezone:"
-      required: false
+      required: true
       default: "Europe/Berlin"
       type: "string"
     - variable: "volume_driver"
@@ -49,7 +49,39 @@
       required: true
       default: "local"
       type: "string"
-
+    - variable: "volume_name"
+      description: "Volume name for sync folder."
+      label: "Volume Name:"
+      required: true
+      default: "syncthing_data"
+      type: "string"
+    - variable: "volume_custom_export"
+      description: "Use custom volume export? For usage with rancher-nfs."
+      label: "Use Custom Export:"
+      required: false
+      default: false
+      type: "boolean"
+    - variable: "volume_export_host"
+      description: "Export host for custom export."
+      label: "Export Host:"
+      required: false
+      default: "192.168.0.100"
+      type: "string"
+    - variable: "volume_export_type"
+      description: "Export type for custom export."
+      label: "Export Type:"
+      required: false
+      default: "export"
+      type: enum   
+      options:
+        - export
+        - exportBase
+    - variable: "volume_export_path"
+      description: "Export path for custom export."
+      label: "Export Path:"
+      required: false
+      default: "/export/syncthing"
+      type: "string"
 
 syncthing:
   scale: 1
@@ -61,3 +93,5 @@ syncthing:
     strategy: recreate
     response_timeout: 2000
     healthy_threshold: 2
+syncthing-data:
+  scale: 1
