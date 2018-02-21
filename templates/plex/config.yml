@@ -1,0 +1,5 @@
+name: Plex Media Server
+description: |
+  Official Docker container for Plex Media Server
+version: 2017-01-30
+category: Applications
