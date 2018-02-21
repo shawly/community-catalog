@@ -38,6 +38,6 @@ services:
     - /bin/true
     volume_driver: ${volume_driver}
     volumes:
-    - /var/log
+    - /var/log/pihole.log:/var/log/pihole.log
     - /etc/pihole
     - /etc/dnsmasq.d
