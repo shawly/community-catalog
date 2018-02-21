@@ -4,6 +4,7 @@ services:
     ports:
     - ${http_port}:80/tcp
     labels:
+      io.rancher.sidekicks: organizr-data
       {{- if ne .Values.requested_ip ""}}
       io.rancher.container.requested_ip: ${requested_ip}
       {{- end}}
@@ -14,6 +15,8 @@ services:
     volumes_from:
     - organizr-data
   organizr-data:
+    labels:
+      io.rancher.container.start_once: 'true'
     image: busybox
     network_mode: none
     entrypoint:
