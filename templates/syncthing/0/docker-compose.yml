@@ -20,8 +20,8 @@ services:
     labels:
       io.rancher.container.start_once: 'true'
     image: busybox
-    entrypoint:
-    - /bin/true
+    network_mode: none
+    entrypoint: ["chown", "-R", "1000:1000", "/var/syncthing/config"]
     volume_driver: ${volume_driver}
     volumes:
     - /var/syncthing/config
