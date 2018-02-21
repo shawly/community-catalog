@@ -41,7 +41,7 @@
       description: "What your web server 'virtual host' is, accessing admin through this Hostname/IP allows you to make changes to the whitelist / blacklists in addition to the default 'http://pi.hole/admin/' address."
       label: "Virtual Host:"
       required: true
-      default: ""
+      default: "10.10.0.10"
       type: "string"
     - variable: "pihole_ipv6"
       description: "For unraid compatibility, strips out all the IPv6 configuration from DNS/Web services when false."
