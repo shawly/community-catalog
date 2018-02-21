@@ -29,36 +29,36 @@
       description: "Static IP for the container"
       label: "Static IP:"
       required: false
-      default: "10.10.0.10"
+      default: ""
       type: "string"
     - variable: "dokuwiki_full_name"
       description: "The full name of the DokuWiki admin account."
       label: "Full Name:"
-      required: false
+      required: true
       default: "Full Name"
       type: "string"
     - variable: "dokuwiki_username"
       description: "The username of the DokuWiki admin account."
       label: "Username:"
-      required: false
+      required: true
       default: "superuser"
       type: "string"
     - variable: "dokuwiki_password"
       description: "The password of the DokuWiki admin account. Default is bitnami1."
       label: "Password:"
-      required: false
+      required: true
       default: "bitnami1"
       type: "password"
     - variable: "dokuwiki_email"
       description: "The email of the DokuWiki admin account."
       label: "Email:"
-      required: false
+      required: true
       default: "user@example.com"
       type: "string"
     - variable: "dokuwiki_wiki_name"
       description: "The site name of the DokuWiki."
       label: "Wiki Name:"
-      required: false
+      required: true
       default: "Bitnami DokuWiki"
       type: "string"
     - variable: "volume_driver"
