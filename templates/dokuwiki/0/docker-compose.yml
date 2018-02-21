@@ -5,8 +5,10 @@ services:
     - ${http_port}:80/tcp
     - ${https_port}:443/tcp
     labels:
-      io.rancher.container.requested_ip: ${requested_ip}
       io.rancher.sidekicks: dokuwiki-data
+      {{- if ne .Values.requested_ip ""}}
+      io.rancher.container.requested_ip: ${requested_ip}
+      {{- end}}
     hostname: ${dokuwiki_hostname}
     image: bitnami/dokuwiki
     volumes_from:
