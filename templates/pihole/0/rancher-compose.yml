@@ -29,7 +29,7 @@
       description: "Static IP for the container"
       label: "Static IP:"
       required: false
-      default: "10.10.0.10"
+      default: ""
       type: "string"
     - variable: "pihole_server_ip"
       description: "External IP for Pi-Hole."
@@ -40,49 +40,49 @@
     - variable: "pihole_virtual_host"
       description: "What your web server 'virtual host' is, accessing admin through this Hostname/IP allows you to make changes to the whitelist / blacklists in addition to the default 'http://pi.hole/admin/' address."
       label: "Virtual Host:"
-      required: false
-      default: "10.10.0.10"
+      required: true
+      default: ""
       type: "string"
     - variable: "pihole_ipv6"
       description: "For unraid compatibility, strips out all the IPv6 configuration from DNS/Web services when false."
       label: "IPv6 Enabled:"
-      required: false
+      required: true
       default: true
       type: "boolean"
     - variable: "pihole_interface"
       description: "The default works fine with our basic example docker run commands. If you're trying to use DHCP with --net host mode then you may have to customize this or DNSMASQ_LISTENING."
       label: "Interface:"
-      required: false
+      required: true
       default: "eth0"
       type: "string"
     - variable: "pihole_password"
       description: "The password of the webinterface. Default is pihole1."
       label: "Password:"
-      required: false
+      required: true
       default: "pihole1"
       type: "password"
     - variable: "pihole_dns1"
       description: "Primary upstream DNS provider."
       label: "DNS1:"
-      required: false
+      required: true
       default: "8.8.8.8"
       type: "string"
     - variable: "pihole_dns2"
       description: "Secondary upstream DNS provider."
       label: "DNS2:"
-      required: false
+      required: true
       default: "8.8.4.4"
       type: "string"
     - variable: "pihole_timezone"
       description: "Timezone for Pi-Hole."
       label: "Timezone:"
-      required: false
+      required: true
       default: "Europe/Berlin"
       type: "string"
     - variable: "pihole_dnsmasqlistening"
       description: "local listens on all local subnets, all permits listening on internet origin subnets in addition to local."
       label: "Listening:"
-      required: false
+      required: true
       default: "all"
       type: enum   
       options:
@@ -106,3 +106,5 @@ pi-hole:
     strategy: recreate
     response_timeout: 2000
     healthy_threshold: 2
+pi-hole-data:
+  scale: 1
