@@ -35,7 +35,7 @@
       description: "Plex Claim Token from https://www.plex.tv/claim/."
       label: "Plex Claimtoken:"
       required: true
-      default: false
+      default: ""
       type: "string"
     - variable: "advertise_ip"
       description: "This variable defines the IP on which the server may be be found."
