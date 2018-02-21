@@ -49,12 +49,6 @@
       required: true
       default: "local"
       type: "string"
-    - variable: "volume_name"
-      description: "Volume name for sync folder."
-      label: "Volume Name:"
-      required: true
-      default: "syncthing_data"
-      type: "string"
     - variable: "volume_custom_export"
       description: "Use custom volume export? For usage with rancher-nfs."
       label: "Use Custom Export:"
