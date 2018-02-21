@@ -14,8 +14,8 @@
       default: "plex.example.com"
       type: "string"
     - variable: "plex_port"
-      description: "plex port to expose on host. Will be used to bind TCP"
-      label: "plex port:"
+      description: "Plex port to expose on host. Will be used to bind TCP"
+      label: "Plex port:"
       required: true
       default: 32400
       type: "string"
