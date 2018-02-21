@@ -29,6 +29,7 @@ services:
 volumes:
   syncthing_data:
     {{- if eq .Values.volume_custom_export "true"}}
+    driver: ${volume_driver}
     driver_opts:
       host: ${volume_export_host}
       {{- if eq .Values.volume_export_type "export"}}
