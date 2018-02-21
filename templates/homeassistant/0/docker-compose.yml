@@ -16,6 +16,8 @@ services:
     volumes_from:
     - home-assistant-data
   home-assistant-data:
+    labels:
+      io.rancher.container.start_once: 'true'
     image: busybox
     entrypoint:
     - /bin/true
