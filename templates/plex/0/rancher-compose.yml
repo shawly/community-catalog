@@ -31,23 +31,23 @@
       required: true
       default: "Europe/Berlin"
       type: "string"
+    - variable: "plex_claimtoken"
+      description: "Plex Claim Token from https://www.plex.tv/claim/."
+      label: "Plex Claimtoken:"
+      required: true
+      default: false
+      type: "string"
+    - variable: "advertise_ip"
+      description: "This variable defines the IP on which the server may be be found."
+      label: "Advertise IP:"
+      required: true
+      default: "192.168.0.100"
+      type: "string"
     - variable: "volume_driver"
       description: "Volume driver for plex data."
       label: "Volume Driver:"
       required: true
       default: "local"
-      type: "string"
-    - variable: "plex_claimtoken"
-      description: "Plex Claim Token from https://www.plex.tv/claim/."
-      label: "Plex Claimtoken:"
-      required: false
-      default: false
-      type: "boolean"
-    - variable: "advertise_ip"
-      description: "This variable defines the IP on which the server may be be found."
-      label: "Advertise IP:"
-      required: false
-      default: "192.168.0.100"
       type: "string"
 
 plex:
