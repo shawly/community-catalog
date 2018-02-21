@@ -50,7 +50,7 @@
       default: "local"
       type: "string"
 
-plex:
+plex-media-server:
   scale: 1
   retain_ip: true
   health_check:
@@ -60,5 +60,5 @@ plex:
     strategy: recreate
     response_timeout: 2000
     healthy_threshold: 2
-plex-data:
+plex-media-server-data:
   scale: 1
