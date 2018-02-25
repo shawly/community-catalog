@@ -67,9 +67,9 @@
       required: true
       default: "768"
       type: "string"
-    - variable: "jdownloader2_vnc_secure_connection"
+    - variable: "jdownloader2_secure_connection"
       description: "When set to 1, an encrypted connection is used to access the application's GUI (either via web browser or VNC client)."
-      label: "Secure VNC connection:"
+      label: "Secure connection:"
       required: true
       default: "0"
       type: "string"
