@@ -18,6 +18,9 @@ services:
       DISPLAY_WIDTH: ${jdownloader2_display_width}
       DISPLAY_HEIGHT: ${jdownloader2_display_height}
       SECURE_CONNECTION: ${jdownloader2_vnc_secure_connection}
+      {{- if ne .Values.jdownloader2_vnc_password ""}}
+      VNC_PASSWORD: ${jdownloader2_vnc_password}
+      {{- end}}
     volumes_from:
     - jdownloader2-data
   jdownloader2-data:
