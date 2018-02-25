@@ -59,19 +59,19 @@
       description: "Width (in pixels) of the application's window."
       label: "VNC window width:"
       required: true
-      default: "1"
+      default: "1280"
       type: "string"
     - variable: "jdownloader2_display_height"
       description: "Height (in pixels) of the application's window.	"
       label: "VNC window height:"
       required: true
-      default: "1"
+      default: "768"
       type: "string"
     - variable: "jdownloader2_vnc_secure_connection"
       description: "When set to 1, an encrypted connection is used to access the application's GUI (either via web browser or VNC client)."
       label: "Secure VNC connection:"
       required: true
-      default: "1"
+      default: "0"
       type: "string"
     - variable: "jdownloader2_vnc_password"
       description: "Password needed to connect to the application's GUI."
