@@ -1,0 +1,44 @@
+version: '2'
+services:
+  jdownloader2:
+    ports:
+    - ${http_port}:5800/tcp
+    - ${vnc_port}:5900/tcp
+    labels:
+      io.rancher.sidekicks: jdownloader2-data
+      {{- if ne .Values.requested_ip ""}}
+      io.rancher.container.requested_ip: ${requested_ip}
+      {{- end}}
+    hostname: ${jdownloader2_hostname}
+    image: jlesage/jdownloader-2
+    environment:
+      TZ: ${jdownloader2_timezone}
+      KEEP_APP_RUNNING: ${jdownloader2_keepapprunning}
+      CLEAN_TMP_DIR: ${jdownloader2_cleantmpdir}
+      DISPLAY_WIDTH: ${jdownloader2_display_width}
+      DISPLAY_HEIGHT: ${jdownloader2_display_height}
+      SECURE_CONNECTION: ${jdownloader2_vnc_secure_connection}
+    volumes_from:
+    - jdownloader2-data
+  jdownloader2-data:
+    labels:
+      io.rancher.container.start_once: 'true'
+    image: busybox
+    network_mode: none
+    entrypoint: ["chown", "-R", "1000:1000", "/config", "/output"]
+    volume_driver: ${volume_driver}
+    volumes:
+    - /config
+    - jdownloader2_downloads:/output
+volumes:
+  jdownloader2_downloads:
+    driver: ${volume_driver}
+    {{- if eq .Values.volume_custom_export "true"}}
+    driver_opts:
+      host: ${volume_export_host}
+      {{- if eq .Values.volume_export_type "export"}}
+      export: ${volume_export_path}
+      {{- else }}
+      exportBase: ${volume_export_path}
+      {{- end}}
+    {{- end}}
