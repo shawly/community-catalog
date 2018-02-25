@@ -20,7 +20,7 @@ services:
       io.rancher.container.start_once: 'true'
     image: busybox
     network_mode: none
-    entrypoint: ["chown", "-R", "1000:1000", "/minecraft"]
+    entrypoint: ["chown", "-R", "911:911", "/minecraft"]
     volumes:
     - /minecraft
     - mcmyadmin2_backups:/minecraft/Backups
