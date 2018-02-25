@@ -1,0 +1,38 @@
+version: '2'
+services:
+  mcmyadmin2:
+    ports:
+    - ${http_port}:8080/tcp
+    - ${minecraft_port}:25565/tcp
+    labels:
+      io.rancher.sidekicks: mcmyadmin2-data
+      {{- if ne .Values.requested_ip ""}}
+      io.rancher.container.requested_ip: ${requested_ip}
+      {{- end}}
+    hostname: ${mcmyadmin2_hostname}
+    image: linuxserver/mcmyadmin2
+    environment:
+      TZ: ${mcmyadmin2_timezone}
+    volumes_from:
+    - mcmyadmin2-data
+  mcmyadmin2-data:
+    labels:
+      io.rancher.container.start_once: 'true'
+    image: busybox
+    network_mode: none
+    entrypoint: ["chown", "-R", "1000:1000", "/minecraft"]
+    volumes:
+    - /minecraft
+    - mcmyadmin2_backups:/minecraft/Backups
+volumes:
+  mcmyadmin2_backups:
+    driver: ${volume_driver}
+    {{- if eq .Values.volume_custom_export "true"}}
+    driver_opts:
+      host: ${volume_export_host}
+      {{- if eq .Values.volume_export_type "export"}}
+      export: ${volume_export_path}
+      {{- else }}
+      exportBase: ${volume_export_path}
+      {{- end}}
+    {{- end}}
