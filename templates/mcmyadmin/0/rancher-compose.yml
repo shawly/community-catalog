@@ -1,0 +1,85 @@
+.catalog:
+  name: McMyAdmin2
+  version: 2.7.0.2
+  description: |
+    McMyAdmin combines minecraft with a web control panel and admin console so can take a little while to start up.
+  minimum_rancher_version: v0.56.0
+  maintainer: "shawly <shawlyde@gmail.com>"
+  uuid: mcmyadmin2-0
+  questions:
+    - variable: "mcmyadmin2_hostname"
+      description: "McMyAdmin2 hostname"
+      label: "Hostname:"
+      required: true
+      default: "mcmyadmin2.example.com"
+      type: "string"
+    - variable: "http_port"
+      description: "HTTP port to expose on host. Will be used to bind TCP"
+      label: "HTTP port:"
+      required: true
+      default: 8080
+      type: "string"
+    - variable: "minecraft_port"
+      description: "Minecraft port to expose on host. Will be used to bind TCP"
+      label: "McMyAdmin2 port:"
+      required: true
+      default: 25565
+      type: "string"
+    - variable: "requested_ip"
+      description: "Static IP for the container"
+      label: "Static IP:"
+      required: false
+      default: ""
+      type: "string"
+    - variable: "mcmyadmin2_timezone"
+      description: "Timezone for McMyAdmin2."
+      label: "Timezone:"
+      required: true
+      default: "Europe/Berlin"
+      type: "string"
+    - variable: "volume_driver"
+      description: "Volume driver for McMyAdmin2 data."
+      label: "Volume Driver:"
+      required: true
+      default: "local"
+      type: "string"
+    - variable: "volume_custom_export"
+      description: "Use custom volume export? For usage with rancher-nfs."
+      label: "Use Custom Export:"
+      required: false
+      default: false
+      type: "boolean"
+    - variable: "volume_export_host"
+      description: "Export host for custom export."
+      label: "Export Host:"
+      required: false
+      default: "192.168.0.100"
+      type: "string"
+    - variable: "volume_export_type"
+      description: "Export type for custom export."
+      label: "Export Type:"
+      required: false
+      default: "export"
+      type: enum   
+      options:
+        - export
+        - exportBase
+    - variable: "volume_export_path"
+      description: "Export path for custom export."
+      label: "Export Path:"
+      required: false
+      default: "/export/mcmyadmin2"
+      type: "string"
+
+mcmyadmin2:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 8080
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
+mcmyadmin2-data:
+  scale: 1
