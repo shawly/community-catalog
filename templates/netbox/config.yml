@@ -1,5 +1,0 @@
-name: Netbox
-description: |
-  NetBox is an open source web application designed to help manage and document computer networks. Initially conceived by the network engineering team at DigitalOcean, NetBox was developed specifically to address the needs of network and infrastructure engineers.
-version: v2.3.0
-category: Networking
