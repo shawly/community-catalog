@@ -21,7 +21,7 @@ services:
     image: busybox
     network_mode: none
     entrypoint:
-	- /bin/true
+    - /bin/true
     volume_driver: ${volume_driver}
     volumes:
     - /etc/nginx/external/
