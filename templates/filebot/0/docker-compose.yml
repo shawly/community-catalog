@@ -10,7 +10,7 @@ services:
       io.rancher.container.requested_ip: ${requested_ip}
       {{- end}}
     hostname: ${filebot_hostname}
-    image: jlesage/jdownloader-2
+    image: jlesage/filebot
     environment:
       TZ: ${filebot_timezone}
       KEEP_APP_RUNNING: ${filebot_keepapprunning}
