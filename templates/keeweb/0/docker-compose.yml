@@ -1,0 +1,27 @@
+version: '2'
+services:
+  keeweb:
+    ports:
+    - ${http_port}:80/tcp
+    - ${https_port}:443/tcp
+    labels:
+      io.rancher.sidekicks: keeweb-data
+      {{- if ne .Values.requested_ip ""}}
+      io.rancher.container.requested_ip: ${requested_ip}
+      {{- end}}
+    hostname: ${keeweb_hostname}
+    image: antelle/keeweb
+    environment:
+      TZ: ${keeweb_timezone}
+    volumes_from:
+    - keeweb-data
+  keeweb-data:
+    labels:
+      io.rancher.container.start_once: 'true'
+    image: busybox
+    network_mode: none
+    entrypoint:
+	- /bin/true
+    volume_driver: ${volume_driver}
+    volumes:
+    - /etc/nginx/external/
