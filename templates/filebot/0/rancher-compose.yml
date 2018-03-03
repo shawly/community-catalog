@@ -1,0 +1,121 @@
+.catalog:
+  name: FileBot
+  version: 1.0.2
+  description: |
+    FileBot is the ultimate tool for organizing and renaming your movies, tv shows or anime, and music well as downloading subtitles and artwork. It's smart and just works.
+  minimum_rancher_version: v0.56.0
+  maintainer: "shawly <shawlyde@gmail.com>"
+  uuid: filebot-0
+  questions:
+    - variable: "filebot_hostname"
+      description: "FileBot hostname"
+      label: "Hostname:"
+      required: true
+      default: "filebot.example.com"
+      type: "string"
+    - variable: "http_port"
+      description: "HTTP port to expose on host. Will be used to bind TCP"
+      label: "HTTP port:"
+      required: true
+      default: 5800
+      type: "string"
+    - variable: "vnc_port"
+      description: "VNC port to expose on host. Will be used to bind TCP"
+      label: "VNC port:"
+      required: true
+      default: 5900
+      type: "string"
+    - variable: "requested_ip"
+      description: "Static IP for the container"
+      label: "Static IP:"
+      required: false
+      default: ""
+      type: "string"
+    - variable: "filebot_timezone"
+      description: "Timezone for FileBot."
+      label: "Timezone:"
+      required: true
+      default: "Europe/Berlin"
+      type: "string"
+    - variable: "volume_driver"
+      description: "Volume driver for FileBot data."
+      label: "Volume Driver:"
+      required: true
+      default: "local"
+      type: "string"
+    - variable: "filebot_keepapprunning"
+      description: "When set to 1, the application will be automatically restarted if it crashes or if user quits it."
+      label: "Keep App Running:"
+      required: true
+      default: "0"
+      type: "string"
+    - variable: "filebot_cleantmpdir"
+      description: "When set to 1, all files in the /tmp directory are delete during the container startup."
+      label: "Clean /tmp dir:"
+      required: true
+      default: "1"
+      type: "string"
+    - variable: "filebot_display_width"
+      description: "Width (in pixels) of the application's window."
+      label: "VNC window width:"
+      required: true
+      default: "1280"
+      type: "string"
+    - variable: "filebot_display_height"
+      description: "Height (in pixels) of the application's window.	"
+      label: "VNC window height:"
+      required: true
+      default: "768"
+      type: "string"
+    - variable: "filebot_secure_connection"
+      description: "When set to 1, an encrypted connection is used to access the application's GUI (either via web browser or VNC client)."
+      label: "Secure connection:"
+      required: true
+      default: "0"
+      type: "string"
+    - variable: "filebot_vnc_password"
+      description: "Password needed to connect to the application's GUI."
+      label: "VNC password:"
+      required: false
+      default: ""
+      type: "password"
+    - variable: "volume_custom_export"
+      description: "Use custom volume export for downloads? For usage with rancher-nfs."
+      label: "Use Custom Export:"
+      required: false
+      default: false
+      type: "boolean"
+    - variable: "volume_export_host"
+      description: "Export host for custom export."
+      label: "Export Host:"
+      required: false
+      default: ""
+      type: "string"
+    - variable: "volume_export_type"
+      description: "Export type for custom export."
+      label: "Export Type:"
+      required: false
+      default: ""
+      type: enum   
+      options:
+        - export
+        - exportBase
+    - variable: "volume_export_path"
+      description: "Export path for custom export."
+      label: "Export Path:"
+      required: false
+      default: ""
+      type: "string"
+
+filebot:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 5800
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
+filebot-data:
+  scale: 1
