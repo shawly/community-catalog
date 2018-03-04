@@ -1,0 +1,79 @@
+.catalog:
+  name: ps3netsrv
+  version: 1.0.0
+  description: |
+    ps3netsrv for WebMAN-MOD.
+  minimum_rancher_version: v0.56.0
+  maintainer: "shawly <shawlyde@gmail.com>"
+  uuid: ps3netsrv-0
+  questions:
+    - variable: "ps3netsrv_hostname"
+      description: "ps3netsrv hostname"
+      label: "Hostname:"
+      required: true
+      default: "ps3netsrv.example.com"
+      type: "string"
+    - variable: "ps3netsrv_port"
+      description: "ps3netsrv port to expose on host. Will be used to bind TCP"
+      label: "ps3netsrv port:"
+      required: true
+      default: 38008
+      type: "string"
+    - variable: "requested_ip"
+      description: "Static IP for the container"
+      label: "Static IP:"
+      required: false
+      default: ""
+      type: "string"
+    - variable: "ps3netsrv_timezone"
+      description: "Timezone for ps3netsrv."
+      label: "Timezone:"
+      required: true
+      default: "Europe/Berlin"
+      type: "string"
+    - variable: "volume_driver"
+      description: "Volume driver for ps3netsrv data."
+      label: "Volume Driver:"
+      required: true
+      default: "local"
+      type: "string"
+    - variable: "volume_custom_export"
+      description: "Use custom volume export? For usage with rancher-nfs."
+      label: "Use Custom Export:"
+      required: false
+      default: false
+      type: "boolean"
+    - variable: "volume_export_host"
+      description: "Export host for custom export."
+      label: "Export Host:"
+      required: false
+      default: "192.168.0.100"
+      type: "string"
+    - variable: "volume_export_type"
+      description: "Export type for custom export."
+      label: "Export Type:"
+      required: false
+      default: "export"
+      type: enum   
+      options:
+        - export
+        - exportBase
+    - variable: "volume_export_path"
+      description: "Export path for custom export."
+      label: "Export Path:"
+      required: false
+      default: "/export/ps3netsrv"
+      type: "string"
+
+ps3netsrv:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 38008
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
+ps3netsrv-data:
+  scale: 1
