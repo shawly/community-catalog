@@ -1,0 +1,38 @@
+version: '2'
+services:
+  ps3netsrv:
+    ports:
+    - ${ps3netsrv_port}:38008/tcp
+    labels:
+      io.rancher.sidekicks: ps3netsrv-data
+      {{- if ne .Values.requested_ip ""}}
+      io.rancher.container.requested_ip: ${requested_ip}
+      {{- end}}
+    hostname: ${ps3netsrv_hostname}
+    image: ps3netsrv/ps3netsrv
+    environment:
+      TZ: ${ps3netsrv_timezone}
+	  KEEP_APP_RUNNING: 1
+	  CLEAN_TMP_DIR: 1
+    volumes_from:
+    - ps3netsrv-data
+  ps3netsrv-data:
+    labels:
+      io.rancher.container.start_once: 'true'
+    image: busybox
+    network_mode: none
+    entrypoint: ["chown", "-R", "1000:1000", "/games"]
+    volumes:
+    - ps3netsrv_games:/games
+volumes:
+  ps3netsrv_games:
+    {{- if eq .Values.volume_custom_export "true"}}
+    driver: ${volume_driver}
+    driver_opts:
+      host: ${volume_export_host}
+      {{- if eq .Values.volume_export_type "export"}}
+      export: ${volume_export_path}
+      {{- else }}
+      exportBase: ${volume_export_path}
+      {{- end}}
+    {{- end}}
