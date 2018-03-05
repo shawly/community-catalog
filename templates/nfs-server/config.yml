@@ -1,0 +1,5 @@
+name: NFS-Server
+description: |
+  NFS-Server file server to serve docker volumes to clients.
+version: 1.0.0
+category: Storage

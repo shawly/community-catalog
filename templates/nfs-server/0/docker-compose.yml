@@ -1,0 +1,14 @@
+version: '2'
+services:
+  nfs-server:
+    ports:
+    - ${nfs-server_port}:2049/tcp
+    - ${nfs-server_port}:2049/udp
+    labels:
+      {{- if ne .Values.requested_ip ""}}
+      io.rancher.container.requested_ip: ${requested_ip}
+      {{- end}}
+    hostname: ${nfs-server_hostname}
+    image: erichough/nfs-server
+    environment:
+      TZ: ${nfs-server_timezone}

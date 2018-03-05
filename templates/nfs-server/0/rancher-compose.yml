@@ -1,0 +1,44 @@
+.catalog:
+  name: NFS-Server
+  version: 1.0.0
+  description: |
+    NFS-Server file server to serve docker volumes to clients.
+  minimum_rancher_version: v0.56.0
+  maintainer: "shawly <shawlyde@gmail.com>"
+  uuid: nfs-server-0
+  questions:
+    - variable: "nfs-server_hostname"
+      description: "NFS-Server hostname"
+      label: "Hostname:"
+      required: true
+      default: "nfs-server.example.com"
+      type: "string"
+    - variable: "nfs-server_port"
+      description: "NFS-Server port to expose on host. Will be used to bind TCP & UDP"
+      label: "NFS-Server port:"
+      required: true
+      default: 2049
+      type: "string"
+    - variable: "requested_ip"
+      description: "Static IP for the container"
+      label: "Static IP:"
+      required: false
+      default: ""
+      type: "string"
+    - variable: "nfs-server_timezone"
+      description: "Timezone for NFS-Server."
+      label: "Timezone:"
+      required: true
+      default: "Europe/Berlin"
+      type: "string"
+
+nfs-server:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 2049
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
